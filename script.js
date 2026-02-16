@@ -1,19 +1,37 @@
-// 수치 기반 생물학적 분석 데이터베이스
 const ClinicalData = {
     "anxiety": {
-        "diagnosis": "Your current neural patterns indicate a defensive state of the amygdala, often triggered by perceived threats in your environment.",
-        "General": { mechanism: "Amygdala over-activation", metric: "Cortisol baseline +40%", action: "Physiological sigh (2 inhales, 1 exhale) for 3 minutes." },
-        "Work": { mechanism: "Prefrontal cortex overload", metric: "Noradrenaline surge > 150pg/mL", action: "Visual field expansion (panoramic vision) to lower arousal." },
-        "Social": { mechanism: "Attachment circuitry alert", metric: "Oxytocin depletion", action: "Low-stakes predictable social interaction." }
+        "diagnosis": "Based on the biological indicators, your amygdala is currently in a state of hyper-arousal, signaling a mismatch between environmental stimuli and your internal security baseline.",
+        "General": { mechanism: "Amygdala hyper-responsivity", metric: "Cortisol baseline +40%", action: "Perform 3 sets of physiological sighs (2 inhales, 1 extended exhale)." },
+        "Work": { mechanism: "Cognitive resources depletion", metric: "Noradrenaline surge", action: "Switch to panoramic vision for 2 minutes to inhibit the stress response." }
     },
     "burnout": {
-        "diagnosis": "The system detects a significant down-regulation of dopamine receptors, suggesting a state of chronic exhaustion in the executive function circuits.",
-        "General": { mechanism: "Dopamine pathway fatigue", metric: "Receptor availability -30%", action: "Absolute abstinence from high-dopamine triggers for 48 hours." },
-        "Work": { mechanism: "Chronic stress adaptation failure", metric: "HPA axis dysregulation", action: "Strict disengagement from occupational stimuli post 18:00." }
+        "diagnosis": "The neural system shows markers of chronic receptor saturation. Your dopamine circuitry is likely down-regulating to protect the prefrontal cortex from further exhaustion.",
+        "General": { mechanism: "Dopamine system fatigue", metric: "D2 receptor availability -30%", action: "Immediate cessation of non-essential digital stimuli for 24-48 hours." }
     }
 };
 
 let activeContext = "General";
+let isTyping = false; // 동시성 제어 상태 변수
+let typeTimeoutId = null; // 메모리 릭 방지용 타이머 ID
+
+function typeEffect(textNode, cursorNode, text, speed, callback) {
+    let i = 0;
+    textNode.textContent = "";
+    cursorNode.style.display = "inline-block";
+    
+    function typing() {
+        if (i < text.length) {
+            textNode.textContent += text.charAt(i);
+            i++;
+            typeTimeoutId = setTimeout(typing, speed);
+        } else {
+            isTyping = false;
+            cursorNode.style.display = "none";
+            if (callback) callback();
+        }
+    }
+    typing();
+}
 
 document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', () => {
@@ -24,6 +42,12 @@ document.querySelectorAll('.chip').forEach(chip => {
 });
 
 document.getElementById('sendBtn').addEventListener('click', () => {
+    // 렌더링 충돌 방지 로직 실행
+    if (isTyping) {
+        clearTimeout(typeTimeoutId);
+        isTyping = false;
+    }
+
     const inputStr = document.getElementById('userInput').value.toLowerCase().trim();
     const display = document.getElementById('displayArea');
     
@@ -34,44 +58,51 @@ document.getElementById('sendBtn').addEventListener('click', () => {
     for (let key in ClinicalData) {
         if (inputStr.includes(key)) {
             matchFound = true;
-            // 예외 처리: 특정 context 데이터가 없을 경우 General 데이터로 대체
+            isTyping = true;
+            
             const dataSet = ClinicalData[key][activeContext] || ClinicalData[key]["General"];
             const diagnosisText = ClinicalData[key].diagnosis;
             
+            // DOM 구조 초기화 및 노드 생성
             display.innerHTML = `
                 <div class="diagnosis-text">
-                    ${diagnosisText}
+                    <span id="typeText"></span><span id="typeCursor" class="cursor"></span>
                 </div>
-                <div class="result-card">
-                    <div class="result-title">System Analysis Summary</div>
-                    <div class="data-row"><span>Input Pattern:</span> <span class="data-value">${key.toUpperCase()}</span></div>
-                    <div class="data-row"><span>Context Vector:</span> <span class="data-value">${activeContext.toUpperCase()}</span></div>
-                    <div class="data-row"><span>Neural Mechanism:</span> <span class="data-value">${dataSet.mechanism}</span></div>
-                    <div class="data-row"><span>Estimated Biomarker:</span> <span class="data-value" style="color:#ff6b6b;">${dataSet.metric}</span></div>
+            `;
+            
+            const textNode = document.getElementById('typeText');
+            const cursorNode = document.getElementById('typeCursor');
+            
+            // 타이핑 렌더링 함수 호출 (속도: 25ms)
+            typeEffect(textNode, cursorNode, diagnosisText, 25, () => {
+                const reportCard = document.createElement('div');
+                reportCard.className = 'result-card';
+                reportCard.innerHTML = `
+                    <div class="result-title">NEURAL ANALYSIS SUMMARY</div>
+                    <div class="data-row"><span>Detected Pattern:</span> <span class="data-value">${key.toUpperCase()}</span></div>
+                    <div class="data-row"><span>Mechanism:</span> <span class="data-value">${dataSet.mechanism}</span></div>
+                    <div class="data-row"><span>Biomarker Estimation:</span> <span class="data-value" style="color:#ff6b6b;">${dataSet.metric}</span></div>
                     <div class="protocol-section">
                         <div class="protocol-label">Recommended Protocol:</div>
                         <div class="protocol-value">${dataSet.action}</div>
                     </div>
-                </div>
-            `;
+                `;
+                display.appendChild(reportCard);
+                
+                // 100ms 지연 후 CSS transition 트리거
+                setTimeout(() => reportCard.classList.add('visible'), 100);
+            });
             break;
         }
     }
 
     if (!matchFound) {
-        display.innerHTML = `
-            <div class="diagnosis-text" style="color:#ff6b6b; font-size: 1.1rem; text-align: center;">
-                Error: Insufficient data points. Please provide specific behavioral or emotional keywords.
-            </div>
-        `;
+        display.innerHTML = `<div class="diagnosis-text" style="color:#ff6b6b;">Error: No baseline data matched.</div>`;
     }
     
     document.getElementById('userInput').value = ''; 
 });
 
-// 엔터 키 입력 지원 추가
-document.getElementById('userInput').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        document.getElementById('sendBtn').click();
-    }
+document.getElementById('userInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') document.getElementById('sendBtn').click();
 });
