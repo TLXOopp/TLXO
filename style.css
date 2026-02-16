@@ -8,11 +8,9 @@
     --content-width: 800px;
 }
 
-/* 커스텀 다크 스크롤바 추가 */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-main); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #5f6368; }
 
 body {
     margin: 0; padding: 0;
@@ -35,10 +33,9 @@ body {
 .display-area {
     flex: 1; overflow-y: auto; overflow-x: hidden;
     padding: 60px 20px 200px 20px;
-    display: block; /* Flex center 스크롤 버그 방지를 위해 Block으로 변경 */
+    display: block;
 }
 
-/* 개별 요소들을 수학적으로 중앙 정렬 (margin: 0 auto) */
 .welcome-section { 
     text-align: center; width: 100%; max-width: var(--content-width); 
     margin: 5vh auto 0 auto; 
@@ -72,22 +69,19 @@ body {
 input { flex: 1; background: transparent; border: none; color: white; font-size: 1rem; outline: none; padding: 10px 0; }
 #sendBtn { background: var(--accent-blue); border: none; width: 40px; height: 40px; border-radius: 50%; color: var(--bg-main); cursor: pointer; }
 
-/* 대화형 텍스트 중앙 정렬 유지 */
 .diagnosis-text {
     width: 100%; max-width: var(--content-width);
-    margin: 0 auto 25px auto; /* 중앙 정렬 */
+    margin: 0 auto 25px auto;
     font-size: 1.3rem; line-height: 1.6; color: var(--text-main);
-    box-sizing: border-box; display: block;
 }
 .cursor { display: inline-block; width: 8px; height: 1.2rem; background-color: var(--accent-blue); margin-left: 5px; vertical-align: middle; animation: blink 1s step-end infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* 보고서 카드 중앙 정렬 유지 */
 .result-card {
     background: var(--bg-input); border: 1px solid var(--border);
     padding: 25px; border-radius: 16px; 
     width: 100%; max-width: var(--content-width);
-    margin: 0 auto 20px auto; /* 중앙 정렬 */
+    margin: 0 auto 20px auto;
     box-sizing: border-box;
     opacity: 0; transform: translateY(10px); transition: 0.5s ease;
 }
