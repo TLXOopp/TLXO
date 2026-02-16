@@ -1,0 +1,20 @@
+{
+  "anxiety": {
+    "diagnosis": "System identifies a hyper-active HPA axis response. Your amygdala is prioritizing survival signals over prefrontal logic gatekeeping.",
+    "General": { "mechanism": "HPA axis hyper-arousal", "metric": "Cortisol surge +45%", "action": "Physiological sigh (double inhale, long exhale) x 5." },
+    "Work": { "mechanism": "Noradrenergic overload", "metric": "Vigilance baseline +60%", "action": "Panoramic vision exercise (expand visual field) for 120s." }
+  },
+  "burnout": {
+    "diagnosis": "Chronic dopamine receptor down-regulation detected. The brain is entering a 'low-power mode' to prevent neural exhaustion.",
+    "General": { "mechanism": "Dopamine system saturation", "metric": "D2 Receptor affinity -35%", "action": "Complete digital fast for 24h." },
+    "Work": { "mechanism": "PFC metabolic depletion", "metric": "Glucose utilization -20%", "action": "Absolute cognitive disengagement." }
+  },
+  "insomnia": {
+    "diagnosis": "Adenosine-Melatonin phase mismatch. Your circadian clock is out of sync with your homeostatic sleep pressure.",
+    "General": { "mechanism": "Circadian dysrhythmia", "metric": "Melatonin suppression > 50%", "action": "Zero blue-light exposure. Use 2g Glycine." }
+  },
+  "focus": {
+    "diagnosis": "Insufficient signal-to-noise ratio in the prefrontal cortex.",
+    "General": { "mechanism": "Tonic dopamine deficiency", "metric": "Alpha wave coherence -15%", "action": "90-min focus block / 20-min NSDR." }
+  }
+}
