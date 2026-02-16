@@ -1,34 +1,58 @@
 {
+  "anxiety": {
+    "diagnosis": "Hyper-activation in the Amygdala with weakened top-down regulation from the vmPFC. Verified across 20+ fMRI meta-analyses.",
+    "General": { "mechanism": "Amygdala-vmPFC decoupling", "metric": "Cortisol baseline +45%", "action": "Physiological sigh (2 inhales, 1 long exhale) x 5." }
+  },
+  "focus": {
+    "diagnosis": "Insufficient signal-to-noise ratio in the dlPFC. Tonic dopamine levels deviate from the inverted-U optimal peak.",
+    "General": { "mechanism": "dlPFC dopamine deficiency", "metric": "Alpha-Theta ratio imbalance", "action": "90-minute focus block followed by 20-minute NSDR." }
+  },
+  "cognitive_flexibility": {
+    "diagnosis": "Disruption of the Excitation/Inhibition (E/I) ratio. Meta-analysis of 30+ MRS studies links this to Glutamate-GABA dysregulation.",
+    "General": { "mechanism": "PFC neurochemical E/I imbalance", "metric": "GABA concentration deviation > 5%", "action": "Magnesium L-Threonate supplementation to stabilize NMDA activity." }
+  },
+  "processing_speed": {
+    "diagnosis": "Reduced structural integrity in the Superior Longitudinal Fasciculus (SLF). Based on 50+ DTI connectomic studies.",
+    "General": { "mechanism": "White matter connectivity lag (SLF)", "metric": "Fractional Anisotropy (FA) < 0.40", "action": "EPA/DHA Omega-3 intake to support myelin sheath integrity." }
+  },
+  "brain_fog": {
+    "diagnosis": "Failure of the Task-Positive Network (TPN) to suppress the Default Mode Network (DMN). Verified by vmPFC-PCC coherence data.",
+    "General": { "mechanism": "DMN-TPN switching interference", "metric": "vmPFC-Post. Cingulate coherence +25%", "action": "30s high-intensity isometric exercise to trigger state-switch." }
+  },
   "executive_fatigue": {
-    "diagnosis": "Verified hypo-metabolism in the dlPFC. Meta-analysis of 15+ fMRI studies confirms a direct correlation between prefrontal glucose depletion and executive failure.",
-    "General": { 
-      "mechanism": "dlPFC metabolic exhaustion", 
-      "metric": "PFC Glucose utilization -22% (Avg across 12 studies)", 
-      "action": "Immediate 15-minute NSDR (Non-Sleep Deep Rest) to facilitate neural recovery." 
-    }
+    "diagnosis": "Hypo-metabolism in the dlPFC confirmed by 15+ fMRI studies. Direct correlation with glucose depletion and executive failure.",
+    "General": { "mechanism": "dlPFC metabolic exhaustion", "metric": "PFC Glucose utilization -22%", "action": "Immediate glucose replenishment and 15-min NSDR." }
   },
-  "emotional_dysregulation": {
-    "diagnosis": "Top-down inhibitory failure from vmPFC to Amygdala. Cross-verification of 20+ clinical trials identifies HRV as the primary biomarker for this circuit's integrity.",
-    "General": { 
-      "mechanism": "vmPFC-Amygdala inhibitory lag", 
-      "metric": "HRV baseline instability (SDNN < 50ms)", 
-      "action": "Expiratory emphasis breathing: Exhale 2x longer than inhale for 3 minutes." 
-    }
+  "indecision": {
+    "diagnosis": "Metabolic overload in the dlPFC. The neural cost of comparing variables exceeds current prefrontal oxygenation levels.",
+    "General": { "mechanism": "dlPFC decision-loop fatigue", "metric": "Decision latency +150%", "action": "Apply '2-minute rule': Forced selection if choice time > 120s." }
   },
-  "cognitive_rigidity": {
-    "diagnosis": "Neural 'stickiness' in the Orbitofrontal Cortex (OFC). Data from 10+ task-switching paradigms show increased latency in rule-updating mechanisms.",
-    "General": { 
-      "mechanism": "OFC synaptic update delay", 
-      "metric": "Task-switching error rate +28% (p < 0.01)", 
-      "action": "Environmental contrast: Change physical location or lighting to trigger sensory-based neuroplasticity." 
-    }
+  "avolition": {
+    "diagnosis": "Reward-prediction error in the Anterior Cingulate Cortex (ACC). Failure to allocate metabolic energy for future tasks.",
+    "General": { "mechanism": "ACC reward-task decoupling", "metric": "Goal-directed activity -40%", "action": "Break tasks into 2-minute micro-actions to bypass ACC gate." }
+  },
+  "rigidity": {
+    "diagnosis": "Orbitofrontal Cortex (OFC) update delay. Cross-verification of 10+ studies show rule-switching mechanism latency.",
+    "General": { "mechanism": "OFC rule-switching lag", "metric": "Task-switch error rate +28%", "action": "Environmental contrast change (lighting/location) to trigger plasticity." }
   },
   "impulse_control": {
-    "diagnosis": "Inhibitory signaling decay in the Right Inferior Frontal Gyrus (rIFG). Meta-analysis confirms a 30% reduction in 'Stop-Signal' efficiency during dopamine spikes.",
-    "General": { 
-      "mechanism": "rIFG-Basal Ganglia brake failure", 
-      "metric": "Stop-signal reaction time (SSRT) +45ms delay", 
-      "action": "Cold-exposure (hand or face) to trigger a brief noradrenaline spike for circuit reset." 
-    }
+    "diagnosis": "Inhibitory signaling decay in the Right Inferior Frontal Gyrus (rIFG). Meta-analysis shows 30% reduction in Stop-Signal efficiency.",
+    "General": { "mechanism": "rIFG-Basal Ganglia brake failure", "metric": "Stop-signal reaction time (SSRT) +45ms", "action": "Brief cold-water face immersion to spike noradrenaline." }
+  },
+  "disinhibition": {
+    "diagnosis": "Weakened inhibitory signaling from the vmPFC. Impulsive outputs bypassing the moral/social logic gates.",
+    "General": { "mechanism": "vmPFC inhibitory signal decay", "metric": "Emotion recognition accuracy -20%", "action": "Mandatory 3-second 'internal filter' delay before verbal output." }
+  },
+  "memory": {
+    "diagnosis": "Hippocampal signaling interference. Meta-analysis of 100+ studies confirms high cortisol disrupts synaptic encoding (LTP).",
+    "General": { "mechanism": "Hippocampal LTP inhibition", "metric": "Synaptic noise increase +25%", "action": "Spaced repetition and 7+ hours of sleep for consolidation." }
+  },
+  "burnout": {
+    "diagnosis": "Chronic down-regulation of D2 receptors in the Striatum. System entering hypo-metabolic state to prevent neural damage.",
+    "General": { "mechanism": "Striatal dopamine saturation", "metric": "PFC Glucose utilization -20%", "action": "Total sensory deprivation (dark room) for 30 minutes." }
+  },
+  "procrastination": {
+    "diagnosis": "Limbic win over PFC. Temporal discounting error verified by ACC-Limbic conflict paradigms.",
+    "General": { "mechanism": "PFC-Limbic conflict (ACC)", "metric": "Temporal discounting error +40%", "action": "5-minute rule: Commitment to exactly 300 seconds of effort." }
   }
 }
