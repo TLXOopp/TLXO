@@ -11,8 +11,8 @@ const ClinicalData = {
 };
 
 let activeContext = "General";
-let isTyping = false; // 동시성 제어 상태 변수
-let typeTimeoutId = null; // 메모리 릭 방지용 타이머 ID
+let isTyping = false;
+let typeTimeoutId = null;
 
 function typeEffect(textNode, cursorNode, text, speed, callback) {
     let i = 0;
@@ -23,6 +23,10 @@ function typeEffect(textNode, cursorNode, text, speed, callback) {
         if (i < text.length) {
             textNode.textContent += text.charAt(i);
             i++;
+            // 자동 스크롤 하단 고정 기능 추가
+            const displayArea = document.getElementById('displayArea');
+            displayArea.scrollTop = displayArea.scrollHeight;
+            
             typeTimeoutId = setTimeout(typing, speed);
         } else {
             isTyping = false;
@@ -42,7 +46,6 @@ document.querySelectorAll('.chip').forEach(chip => {
 });
 
 document.getElementById('sendBtn').addEventListener('click', () => {
-    // 렌더링 충돌 방지 로직 실행
     if (isTyping) {
         clearTimeout(typeTimeoutId);
         isTyping = false;
@@ -63,7 +66,7 @@ document.getElementById('sendBtn').addEventListener('click', () => {
             const dataSet = ClinicalData[key][activeContext] || ClinicalData[key]["General"];
             const diagnosisText = ClinicalData[key].diagnosis;
             
-            // DOM 구조 초기화 및 노드 생성
+            // 기존 웰컴 텍스트 삭제 및 결과창 주입
             display.innerHTML = `
                 <div class="diagnosis-text">
                     <span id="typeText"></span><span id="typeCursor" class="cursor"></span>
@@ -73,7 +76,6 @@ document.getElementById('sendBtn').addEventListener('click', () => {
             const textNode = document.getElementById('typeText');
             const cursorNode = document.getElementById('typeCursor');
             
-            // 타이핑 렌더링 함수 호출 (속도: 25ms)
             typeEffect(textNode, cursorNode, diagnosisText, 25, () => {
                 const reportCard = document.createElement('div');
                 reportCard.className = 'result-card';
@@ -88,16 +90,17 @@ document.getElementById('sendBtn').addEventListener('click', () => {
                     </div>
                 `;
                 display.appendChild(reportCard);
-                
-                // 100ms 지연 후 CSS transition 트리거
-                setTimeout(() => reportCard.classList.add('visible'), 100);
+                setTimeout(() => {
+                    reportCard.classList.add('visible');
+                    display.scrollTop = display.scrollHeight; // 카드 등장 후 스크롤 하단 조정
+                }, 100);
             });
             break;
         }
     }
 
     if (!matchFound) {
-        display.innerHTML = `<div class="diagnosis-text" style="color:#ff6b6b;">Error: No baseline data matched.</div>`;
+        display.innerHTML = `<div class="diagnosis-text" style="color:#ff6b6b; text-align:center;">Error: No baseline data matched.</div>`;
     }
     
     document.getElementById('userInput').value = ''; 
