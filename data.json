@@ -1,20 +1,60 @@
 {
   "anxiety": {
-    "diagnosis": "System identifies a hyper-active HPA axis response. Your amygdala is prioritizing survival signals over prefrontal logic gatekeeping.",
-    "General": { "mechanism": "HPA axis hyper-arousal", "metric": "Cortisol surge +45%", "action": "Physiological sigh (double inhale, long exhale) x 5." },
-    "Work": { "mechanism": "Noradrenergic overload", "metric": "Vigilance baseline +60%", "action": "Panoramic vision exercise (expand visual field) for 120s." }
-  },
-  "burnout": {
-    "diagnosis": "Chronic dopamine receptor down-regulation detected. The brain is entering a 'low-power mode' to prevent neural exhaustion.",
-    "General": { "mechanism": "Dopamine system saturation", "metric": "D2 Receptor affinity -35%", "action": "Complete digital fast for 24h." },
-    "Work": { "mechanism": "PFC metabolic depletion", "metric": "Glucose utilization -20%", "action": "Absolute cognitive disengagement." }
-  },
-  "insomnia": {
-    "diagnosis": "Adenosine-Melatonin phase mismatch. Your circadian clock is out of sync with your homeostatic sleep pressure.",
-    "General": { "mechanism": "Circadian dysrhythmia", "metric": "Melatonin suppression > 50%", "action": "Zero blue-light exposure. Use 2g Glycine." }
+    "diagnosis": "The system detects hyper-activation in the Amygdala. Your neural safety-check mechanism is currently bypassing the Prefrontal Cortex's logic gate.",
+    "General": { "mechanism": "Amygdala hyper-arousal", "metric": "Cortisol baseline +45%", "action": "Physiological sigh (2 inhales, 1 long exhale) x 5." },
+    "Social": { "mechanism": "Amygdala-mPFC decoupling", "metric": "Oxytocin availability -30%", "action": "Engage in 2 minutes of low-stakes social observation." }
   },
   "focus": {
-    "diagnosis": "Insufficient signal-to-noise ratio in the prefrontal cortex.",
-    "General": { "mechanism": "Tonic dopamine deficiency", "metric": "Alpha wave coherence -15%", "action": "90-min focus block / 20-min NSDR." }
+    "diagnosis": "Insufficient signal-to-noise ratio in the Prefrontal Cortex (PFC). Tonic dopamine levels are below the required threshold for sustained attention.",
+    "General": { "mechanism": "PFC dopamine deficiency", "metric": "Alpha-Theta wave ratio imbalance", "action": "90-minute focus block followed by 20-minute NSDR." },
+    "Work": { "mechanism": "Executive function circuit noise", "metric": "NE baseline -20%", "action": "Identify 1 macro-goal; eliminate all digital notifications." }
+  },
+  "distraction": {
+    "diagnosis": "Failure in the frontal eye fields (FEF) and dlPFC to filter environmental noise. Your brain is struggling to maintain a high signal-to-noise ratio.",
+    "General": { "mechanism": "Frontal sensory gating failure", "metric": "Background noise sensitivity +30%", "action": "Visual focus exercise: Stare at a single point for 60s without blinking." }
+  },
+  "indecision": {
+    "diagnosis": "Metabolic overload in the dorsolateral prefrontal cortex (dlPFC). The neural cost of comparing variables is exceeding current glucose availability.",
+    "General": { "mechanism": "dlPFC decision-loop fatigue", "metric": "Decision time +150%", "action": "Use '2-minute rule': If a choice takes >120s, pick the first option immediately." }
+  },
+  "avolition": {
+    "diagnosis": "Reward-prediction error in the Anterior Cingulate Cortex (ACC). The brain is failing to allocate metabolic energy for future-oriented tasks.",
+    "General": { "mechanism": "ACC reward-task decoupling", "metric": "Goal-directed activity -40%", "action": "Break the task into a 2-minute micro-action to bypass the ACC energy-gate." }
+  },
+  "rigidity": {
+    "diagnosis": "Update delay in the Orbitofrontal Cortex (OFC). Your neural circuits are sticking to old rules despite environmental changes.",
+    "General": { "mechanism": "OFC rule-switching latency", "metric": "Task-switch error rate +25%", "action": "Perform a small routine task in a completely new way to force neuroplasticity." }
+  },
+  "disinhibition": {
+    "diagnosis": "Weakened inhibitory signaling from the ventromedial Prefrontal Cortex (vmPFC). Socially inappropriate or impulsive outputs are bypassing the moral gate.",
+    "General": { "mechanism": "vmPFC inhibitory signal decay", "metric": "Emotion recognition accuracy -20%", "action": "Implement a mandatory 3-second 'internal filter' delay before any verbal output." }
+  },
+  "lability": {
+    "diagnosis": "Failure of top-down inhibitory control from the PFC to the Amygdala. Your executive brain is failing to regulate primitive emotional pulses.",
+    "General": { "mechanism": "PFC-Limbic regulatory failure", "metric": "Heart Rate Variability (HRV) instability", "action": "Perform 4-7-8 rhythmic breathing to manually re-engage the parasympathetic system." }
+  },
+  "self_monitoring": {
+    "diagnosis": "Dysfunction in the Frontopolar Cortex. The brain's 'observer' circuit is lagging, preventing accurate self-correction of behaviors.",
+    "General": { "mechanism": "Frontopolar monitoring lag", "metric": "Error-detection latency -50ms", "action": "Narrate your current actions out loud to force auditory-based self-processing." }
+  },
+  "memory": {
+    "diagnosis": "Hippocampal signaling interference detected. High cortisol levels are likely disrupting the encoding of new synaptic connections.",
+    "General": { "mechanism": "Hippocampal LTP inhibition", "metric": "Synaptic noise increase +25%", "action": "Utilize spaced repetition and prioritize 7+ hours of sleep for consolidation." }
+  },
+  "burnout": {
+    "diagnosis": "Chronic down-regulation of D2 receptors in the Striatum. The brain is entering a hypo-metabolic state to prevent further neural damage.",
+    "General": { "mechanism": "Striatal dopamine saturation", "metric": "PFC Glucose utilization -20%", "action": "Complete sensory deprivation (dark room) for 30 minutes." }
+  },
+  "cravings": {
+    "diagnosis": "Supra-physiological dopamine spikes in the Ventral Tegmental Area (VTA). Your reward prediction error mechanism is currently hijacked.",
+    "General": { "mechanism": "VTA-Nucleus Accumbens hijacking", "metric": "Dopamine peak > 200%", "action": "48-hour dopamine fast. Remove all visual environmental triggers." }
+  },
+  "procrastination": {
+    "diagnosis": "Limbic system (immediate reward) winning over the Prefrontal Cortex (delayed reward). Neural conflict in the Anterior Cingulate Cortex (ACC).",
+    "General": { "mechanism": "PFC-Limbic conflict (ACC)", "metric": "Temporal discounting error +40%", "action": "5-minute rule: Commit to the task for exactly 300 seconds." }
+  },
+  "fear": {
+    "diagnosis": "Periaqueductal Gray (PAG) activation. The brain is shifting from high-order thinking to primitive freeze/flight mode.",
+    "General": { "mechanism": "PAG-mediated freeze response", "metric": "HRV drop / Adrenaline surge", "action": "Box breathing (4-4-4-4) to re-engage the Vagus nerve signals." }
   }
 }
