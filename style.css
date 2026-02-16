@@ -79,12 +79,49 @@ input {
 
 .disclaimer { text-align: center; font-size: 0.75rem; color: #5f6368; margin-top: 15px; }
 
+/* 문장형 진단 데이터 스타일 */
+.diagnosis-text {
+    width: 100%;
+    max-width: 700px;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: var(--text-main);
+    text-align: left;
+    will-change: opacity, transform;
+    animation: fadeIn 0.8s ease-out;
+}
+
 /* 데이터 출력 카드 UI */
 .result-card {
     background: var(--bg-input); border: 1px solid var(--border);
     padding: 25px; border-radius: 16px; width: 100%; max-width: 700px;
     margin-bottom: 20px; line-height: 1.6;
 }
+
 .result-title { color: var(--accent-blue); font-weight: 600; font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;}
 .data-row { display: flex; justify-content: space-between; border-bottom: 1px solid #333; padding: 8px 0; font-size: 0.95rem; }
-.data-value { font-family: monospace; color: #fff; }
+.data-value { font-family: monospace; color: #fff; text-align: right; }
+
+/* 행동 지침 영역 */
+.protocol-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--border);
+}
+
+.protocol-label {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    margin-bottom: 8px;
+}
+
+.protocol-value {
+    font-weight: 500;
+    color: #ffffff;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
