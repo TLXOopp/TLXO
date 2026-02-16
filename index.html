@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAIN DICTIONARY</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="top-nav">
+            <div class="logo">BRAIN DICTIONARY</div>
+            <div class="engine-ver">Static Engine v1.1</div>
+        </header>
+
+        <main id="displayArea" class="display-area">
+            <div class="welcome-section">
+                <h1>System Ready.</h1>
+                <p>Input current psychological state for biological parsing.</p>
+            </div>
+        </main>
+
+        <div class="input-container">
+            <div class="context-chips">
+                <button class="chip active" data-context="General">General</button>
+                <button class="chip" data-context="Work">Work</button>
+                <button class="chip" data-context="Social">Social</button>
+                <button class="chip" data-context="Sleep">Sleep</button>
+            </div>
+            <div class="input-wrapper">
+                <input type="text" id="userInput" placeholder="Enter behavioral or emotional symptoms...">
+                <button id="sendBtn">➔</button>
+            </div>
+            <p class="disclaimer">Client-side processing only. No data transmission.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
