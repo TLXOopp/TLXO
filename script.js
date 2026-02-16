@@ -1,79 +1,114 @@
-let ClinicalData = {}; // 데이터 패키지가 로드될 빈 객체
-let activeContext = "General";
+let ClinicalData = {};
+let currentKey = ""; 
+let currentLang = "en";
 let isTyping = false;
-let typeTimeoutId = null;
 
-// [cite: 2026-02-06] 외부 데이터 패키지(JSON) 로드 함수
-async function loadDataPackage() {
+
+async function loadData() {
     try {
-        const response = await fetch('data.json');
-        ClinicalData = await response.json();
-        console.log("Neural data package loaded successfully.");
-    } catch (error) {
-        console.error("Failed to load data package:", error);
+        const res = await fetch('data.json');
+        ClinicalData = await res.json();
+        console.log("Brain Engine v3.1 Loaded Successfully.");
+    } catch (e) {
+        console.error("Data Load Error: Ensure data.json is in the same folder.");
     }
 }
+loadData();
 
-loadDataPackage(); // 앱 시작 시 데이터 로드
 
-function typeEffect(textNode, cursorNode, text, speed, callback) {
+function typeWriter(text, elementId, speed = 20) {
     let i = 0;
-    textNode.textContent = "";
-    cursorNode.style.display = "inline-block";
-    function typing() {
+    const element = document.getElementById(elementId);
+    element.textContent = "";
+    isTyping = true;
+    
+    function type() {
         if (i < text.length) {
-            textNode.textContent += text.charAt(i);
+            element.textContent += text.charAt(i);
             i++;
-            document.getElementById('displayArea').scrollTop = document.getElementById('displayArea').scrollHeight;
-            typeTimeoutId = setTimeout(typing, speed);
+            setTimeout(type, speed);
         } else {
             isTyping = false;
-            cursorNode.style.display = "none";
-            if (callback) callback();
         }
     }
-    typing();
+    type();
 }
 
-document.querySelectorAll('.chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-        document.querySelector('.chip.active').classList.remove('active');
-        chip.classList.add('active');
-        activeContext = chip.getAttribute('data-context');
-    });
-});
 
-document.getElementById('sendBtn').addEventListener('click', () => {
-    if (isTyping) { clearTimeout(typeTimeoutId); isTyping = false; }
-    const inputStr = document.getElementById('userInput').value.toLowerCase().trim();
-    const display = document.getElementById('displayArea');
-    if (inputStr === "") return;
+window.toggleLanguage = function() {
+    if (isTyping || !currentKey) return;
 
-    let matchFound = false;
-    for (let key in ClinicalData) {
-        if (inputStr.includes(key)) {
-            matchFound = true;
-            isTyping = true;
-            const dataSet = ClinicalData[key][activeContext] || ClinicalData[key]["General"];
-            display.innerHTML = `<div class="diagnosis-text"><span id="typeText"></span><span id="typeCursor" class="cursor"></span></div>`;
-            typeEffect(document.getElementById('typeText'), document.getElementById('typeCursor'), ClinicalData[key].diagnosis, 25, () => {
-                const reportCard = document.createElement('div');
-                reportCard.className = 'result-card';
-                reportCard.innerHTML = `
-                    <div class="result-title">NEURAL ANALYSIS SUMMARY</div>
-                    <div class="data-row"><span>Pattern:</span> <span class="data-value">${key.toUpperCase()}</span></div>
-                    <div class="data-row"><span>Mechanism:</span> <span class="data-value">${dataSet.mechanism}</span></div>
-                    <div class="data-row"><span>Biomarker:</span> <span class="data-value" style="color:#ff6b6b;">${dataSet.metric}</span></div>
-                    <div class="protocol-section"><div class="protocol-value">${dataSet.action}</div></div>
-                `;
-                display.appendChild(reportCard);
-                setTimeout(() => { reportCard.classList.add('visible'); display.scrollTop = display.scrollHeight; }, 100);
-            });
-            break;
-        }
+    
+    currentLang = (currentLang === "en") ? "ko" : "en";
+    const data = ClinicalData[currentKey][currentLang];
+    const transBtn = document.getElementById('transBtn');
+    
+    
+    document.getElementById('typeText').textContent = data.explanation;
+    document.getElementById('logicVal').textContent = data.logic;
+    document.getElementById('actionVal').textContent = data.neural_reset;
+    
+    
+    if (currentLang === "en") {
+        transBtn.textContent = "Translate to 한국어";
+        document.getElementById('logicLabel').textContent = "Scientific Logic:";
+        document.getElementById('actionLabel').textContent = "Reset Protocol:";
+    } else {
+        transBtn.textContent = "Translate to English";
+        document.getElementById('logicLabel').textContent = "과학적 근거:";
+        document.getElementById('actionLabel').textContent = "리셋 프로토콜:";
     }
-    if (!matchFound) display.innerHTML = `<div style="color:#ff6b6b; text-align:center;">No match. Check data.json.</div>`;
-    document.getElementById('userInput').value = ''; 
-});
+};
 
-document.getElementById('userInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('sendBtn').click(); });
+
+function runAnalysis() {
+    const inputField = document.getElementById('userInput');
+    const query = inputField.value.toLowerCase().trim();
+    if (!query || isTyping) return;
+
+    
+    const match = Object.keys(ClinicalData).find(key => query.includes(key.toLowerCase()));
+
+    if (match) {
+        currentKey = match;
+        currentLang = "en"; 
+        const data = ClinicalData[match].en;
+        
+        document.getElementById('welcome').style.display = 'none';
+        const display = document.getElementById('displayArea');
+        
+        display.innerHTML = `
+            <div class="result-wrapper">
+                <div class="explanation-box">
+                    <span id="typeText"></span><span class="cursor"></span>
+                </div>
+                <button id="transBtn" class="translate-btn" onclick="toggleLanguage()">Translate to 한국어</button>
+                
+                <div class="result-card" id="resCard">
+                    <div class="card-label">Neural Analysis Summary</div>
+                    <div class="data-row">
+                        <span class="data-label" id="logicLabel">Scientific Logic:</span>
+                        <span id="logicVal">${data.logic}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label" id="actionLabel">Reset Protocol:</span>
+                        <div class="protocol-box" id="actionVal">${data.neural_reset}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        
+        typeWriter(data.explanation, 'typeText');
+        setTimeout(() => document.getElementById('resCard').classList.add('visible'), 400);
+    } else {
+        alert("데이터베이스에 없는 증상입니다. 'Anxiety'나 'Focus' 등을 입력해 보세요.");
+    }
+    inputField.value = '';
+}
+
+
+document.getElementById('sendBtn').addEventListener('click', runAnalysis);
+document.getElementById('userInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') runAnalysis();
+});

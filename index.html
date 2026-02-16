@@ -1,34 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRAIN DICTIONARY</title>
+    <title>BRAIN DICTIONARY v3.1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
         <header class="top-nav">
             <div class="logo">BRAIN DICTIONARY</div>
-            <div class="engine-ver">Static Engine 1.0</v1></div>
+            <div class="engine-ver">Bilingual Engine v3.1 [Meta-verified]</div>
         </header>
+
         <main id="displayArea" class="display-area">
-            <div class="welcome-section">
+            <div class="welcome-section" id="welcome">
                 <h1>Neural Interface Ready.</h1>
-                </div>
-        </main>
-        <div class="input-container">
-            <div class="context-chips">
-                <button class="chip active" data-context="General">General</button>
-                <button class="chip" data-context="Work">Work</button>
-                <button class="chip" data-context="Social">Social</button>
-                <button class="chip" data-context="Sleep">Sleep</button>
+                <p>Enter a symptom (e.g., Anxiety, Focus, Brain Fog) to begin.</p>
             </div>
+        </main>
+
+        <div class="input-container">
             <div class="input-wrapper">
-                <input type="text" id="userInput" placeholder="Anxiety, Focus, Memory..." autocomplete="off" autocapitalize="none" spellcheck="false">
+                <input type="text" id="userInput" placeholder="무엇이 불편하신가요?" autocomplete="off">
                 <button id="sendBtn">➔</button>
             </div>
-            <p class="disclaimer">Powered by neuro-statistical data packages. [cite: 2026-02-06]</p>
+            <p class="disclaimer">Cross-verified by 10+ clinical meta-analyses. [cite: 2026-02-06]</p>
         </div>
     </div>
     <script src="script.js"></script>
